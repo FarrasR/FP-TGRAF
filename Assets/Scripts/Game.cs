@@ -16,7 +16,7 @@ public class Game : MonoBehaviour {
 
     public int score;
     public int level;
-    public Text scoretext;
+    public Text timertext;
     public Text leveltext;
     private bool gameover;
 
@@ -31,7 +31,15 @@ public class Game : MonoBehaviour {
         gameover = false;
         spawnvalue = new Vector2(0, 0);
         spawnrotation = new Quaternion(0, 0, 0, 0);
+
+        vertexku.transform.Find("Numbering").GetComponent<TextMesh>().text = "9";
         Instantiate(vertexku, spawnvalue, spawnrotation);
+
+
+        spawnvalue = new Vector2(2, 2);
+        vertexku.transform.Find("Numbering").GetComponent<TextMesh>().text = "19";
+        Instantiate(vertexku, spawnvalue, spawnrotation);
+
         UpdateLevel();
 	}
 
