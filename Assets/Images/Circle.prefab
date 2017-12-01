@@ -54,7 +54,7 @@ Transform:
   m_GameObject: {fileID: 1584375671425066}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.048, y: -0.163, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1}
   m_Children:
   - {fileID: 4387218168435110}
   m_Father: {fileID: 0}
@@ -129,7 +129,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1079614835028966}
-  m_Text: 19
+  m_Text: 1
   m_OffsetZ: -1
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea74b563b4c7f94d9e6d8f0c5f7311d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numbering: {fileID: 102685103801641966}
 --- !u!212 &212814169280546904
 SpriteRenderer:
   m_ObjectHideFlags: 1

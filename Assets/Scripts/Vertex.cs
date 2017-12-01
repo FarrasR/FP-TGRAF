@@ -7,27 +7,31 @@ using UnityEngine;
 public class Vertex : MonoBehaviour {
 
     private SpriteRenderer mysprite;
+    public TextMesh numbering;
+    
 
     Vertex(Color colors)
     {
         mysprite.color= colors;
     }
 
-
-	// Use this for initialization
+    
 	void Start () {
-        //mysprite = GetComponent<SpriteRenderer>();
-        //mysprite.color = Color.blue;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    void SetNumber(int number)
+    {
+        numbering.GetComponent<TextMesh>().text = number.ToString();
+    }
     
     void SetColor(Color colors)
     {
-        //mysprite.color = Color.yellow;
         this.GetComponent<SpriteRenderer>().color = colors;
     }
 
