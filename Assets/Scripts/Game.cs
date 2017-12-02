@@ -35,11 +35,11 @@ public class Game : MonoBehaviour {
     public Quaternion spawnrotation;
     public GameObject[] tombolwarna;
 
-
+    private Dictionary<int, List<int>> graph;
     private GameObject[] vertexnya;
     private GameObject[] edgenya;
     private Button theButton;
-    private float timeAmt = 10;
+    private float timeAmt = 180;
     private float time;
 
 
@@ -68,7 +68,7 @@ public class Game : MonoBehaviour {
         diklik = -1;
         warnanya = Color.white;
         makelevel(1);
-        UpdateLevel();
+        
     }
 
     // Update is called once per frame
@@ -99,6 +99,9 @@ public class Game : MonoBehaviour {
     {
         vertexnya = new GameObject[level + 2];
         edgenya = new GameObject[3];
+
+        graph = new Dictionary<int, List<int> >();
+
         List<pair> mypair = new List<pair>();
 
         for (int i = 0; i < vertexnya.Length; i++)
@@ -107,6 +110,7 @@ public class Game : MonoBehaviour {
             spawnrotation = new Quaternion(0, 0, 0, 0);
             vertexnya[i] = Instantiate(vertexku, spawnvalue, spawnrotation);
             vertexnya[i].SendMessage("SetNumber", i);
+            graph[i] = new List<int>();
         }
         spawnvalue = new Vector2(0, 0);
         spawnrotation = new Quaternion(0, 0, 0, 0);
@@ -120,10 +124,10 @@ public class Game : MonoBehaviour {
                 pair temp = new pair(u, v);
                 mypair.Add(temp);
             }
-        }
+        } 
 
 
-        for (int i = 0; i < edgenya.Length; i++)
+        for (int i = 0; i < 3; i++)
         {
             pair temp2 = new pair();
             int coba;
@@ -131,22 +135,24 @@ public class Game : MonoBehaviour {
             {
                 coba = UnityEngine.Random.Range(0, mypair.Count);
                 temp2 = mypair[coba];
-
-                //kasih if if gajelas
-                break;
+                if(graph[temp2.a].Count>=7 || graph[temp2.b].Count >= 7)
+                {
+                    mypair.Remove(temp2);
+                }
+                else break;
             }
             edgenya[i] = Instantiate(edgeku, spawnvalue, spawnrotation);
             Vector2 foo = vertexnya[temp2.a].GetComponent<Transform>().position;
             Vector2 bar = vertexnya[temp2.b].GetComponent<Transform>().position;
 
+            graph[temp2.a].Add(temp2.b);
+            graph[temp2.b].Add(temp2.a);
+
             edgenya[i].GetComponent<LineRenderer>().SetPosition(0, foo);
             edgenya[i].GetComponent<LineRenderer>().SetPosition(1, bar);
             mypair.Remove(temp2);
         }
-
-
-
-
+        UpdateLevel();
     }
 
 
@@ -174,7 +180,21 @@ public class Game : MonoBehaviour {
 
     public void CekBenar()
     {
-        //disini cek benar gaknya jawaban player
+        kuncijawaban();
+        bool flag = true;
+        for (int i = 0; i < vertexnya.Length; i++)
+        {
+            for(int j=0; j<graph[i].Count; j++)
+            {
+                if(vertexnya[i].GetComponent<SpriteRenderer>().color == vertexnya[graph[i][j]].GetComponent<SpriteRenderer>().color)
+                {
+                    flag = false;
+                    break;
+                }
+            }
+        }
+
+        
         for (int i = 0; i < vertexnya.Length; i++)
         {
             Destroy(vertexnya[i]);
@@ -183,10 +203,71 @@ public class Game : MonoBehaviour {
         {
             Destroy(edgenya[i]);
         }
+
+        if (flag == false) SceneManager.LoadScene("Game Over");
+        else
+        {
+            time += 20;
+            if (time >= 180) time = 180;
+            level++;
+            makelevel(level);
+        }
     }
 
     private int kuncijawaban()
     {
-        return 0;
+        int[] arr=new int[graph.Count];
+        int[] dipake= new int[graph.Count];
+        bool[] visit = new bool[graph.Count];
+        int current = 0;
+        for (int i = 0; i < arr.Length; i++)
+        {
+            arr[i] = graph[i].Count;
+            dipake[i] = 0;
+            visit[i] = false;
+        }
+        Array.Sort(arr);
+
+        for (int i = arr.Length-1; i >=0; i--)
+        {
+            if (visit[i] == true) continue;
+            else
+            {
+                List<int> pakewarnaini = new List<int>();
+                current++;
+                dipake[i] = current;
+                visit[i] = true;
+                pakewarnaini.Add(arr[i]);
+
+                for (int j = arr.Length - 1; j >= 0; j--)
+                {
+                    bool hehe;
+                    if (visit[j] == true) continue;
+                    else
+                    {
+                        hehe = true;
+
+                        for(int k=0; k<pakewarnaini.Count; k++)
+                        {
+                            if(graph[k].Contains(arr[j]))
+                            {
+                                hehe = false;
+                            }
+                        }
+
+
+                        if(hehe==true)
+                        {
+                            pakewarnaini.Add(arr[j]);
+                            dipake[j] = current;
+                            visit[j] = true;
+                        }
+
+                    }
+
+                }
+            }
+        }
+        return current;
     }
 }

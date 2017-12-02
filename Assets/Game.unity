@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.26896536, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.6413793, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.006325698, g: 0.8602941, b: 0.11822512, a: 1}
+  m_Color: {r: 0.36764705, g: 0.8168357, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.78727204, b: 0.99264705, a: 1}
+  m_Color: {r: 0, g: 0.21222103, b: 0.99264705, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -696,7 +696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.534447, g: 0.019031161, b: 0.64705884, a: 1}
+  m_Color: {r: 1, g: 0.051470578, b: 0.856085, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -866,7 +866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vertexku: {fileID: 1584375671425066, guid: b1e161622786c404cbf03cef7ffca07c, type: 2}
-  edgeku: {fileID: 0}
+  edgeku: {fileID: 1969324116956104, guid: 0af0e3e2c8a28f34aa5f4cb984679d7a, type: 2}
   spawnvalue: {x: 0, y: 0}
   spawnrotation: {x: 0, y: 0, z: 0, w: 0}
   tombolwarna:
@@ -981,7 +981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24137926, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.6965513, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1102,7 +1102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9705882, g: 0.5862904, b: 0.09991347, a: 1}
+  m_Color: {r: 0.8865231, g: 0.9705882, b: 0.09991347, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1228,7 +1228,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1521784145}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -298.83002, z: 0}
+  m_LocalPosition: {x: 0, y: -310, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1894738630}
@@ -1237,7 +1237,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: -298.83002}
+  m_AnchoredPosition: {x: -0, y: -310}
   m_SizeDelta: {x: 234.36, y: 72.34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1521784147
@@ -1278,7 +1278,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1521784148}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 612359419}
+        m_MethodName: CekBenar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1521784148
@@ -1666,7 +1677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.95818514, g: 0.9705882, b: 0.07136679, a: 1}
+  m_Color: {r: 0.2016227, g: 1, b: 0.09558821, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
