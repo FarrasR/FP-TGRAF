@@ -10,5 +10,15 @@ public class UIManagerScript : MonoBehaviour {
         SceneManager.LoadScene("Game");
     }
 
+    public void HowToPlay()
+    {
+        SceneManager.LoadScene("HowToPlay");
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
 	
 }
