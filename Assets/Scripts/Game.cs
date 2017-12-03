@@ -39,7 +39,7 @@ public class Game : MonoBehaviour {
     private GameObject[] vertexnya;
     private GameObject[] edgenya;
     private Button theButton;
-    private float timeAmt = 180;
+    private float timeAmt = 10;
     private float time;
 
 
@@ -170,7 +170,7 @@ public class Game : MonoBehaviour {
             time -= Time.deltaTime;
             timertext.text = "Time " + time.ToString("F");
         }
-        else SceneManager.LoadScene("Game Over");
+        else SceneManager.LoadScene("Game Over3");
     }
 
     public void Set_Warna(int diklik)
@@ -180,7 +180,9 @@ public class Game : MonoBehaviour {
 
     public void CekBenar()
     {
-        kuncijawaban();
+        int ans=kuncijawaban();
+        List<Color> terpakai = new List<Color>();
+
         bool flag = true;
         for (int i = 0; i < vertexnya.Length; i++)
         {
@@ -194,7 +196,17 @@ public class Game : MonoBehaviour {
             }
         }
 
-        
+
+        for (int i = 0; i < vertexnya.Length; i++)
+        {
+            Color temp3 = vertexnya[i].GetComponent<SpriteRenderer>().color;
+            if (!terpakai.Contains(temp3))
+            {
+                terpakai.Add(temp3);
+            }
+        }
+        Debug.Log("warna yang dipake " + terpakai.Count);
+
         for (int i = 0; i < vertexnya.Length; i++)
         {
             Destroy(vertexnya[i]);
@@ -204,7 +216,8 @@ public class Game : MonoBehaviour {
             Destroy(edgenya[i]);
         }
 
-        if (flag == false) SceneManager.LoadScene("Game Over");
+        if (flag == false ) SceneManager.LoadScene("Game Over");
+        else if(ans < terpakai.Count) SceneManager.LoadScene("Game Over2");
         else
         {
             time += 20;
