@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
+using System.Linq;
 using System;
 
 
@@ -39,7 +40,7 @@ public class Game : MonoBehaviour {
     private GameObject[] vertexnya;
     private GameObject[] edgenya;
     private Button theButton;
-    private float timeAmt = 10;
+    private float timeAmt = 60;
     private float time;
 
 
@@ -229,58 +230,62 @@ public class Game : MonoBehaviour {
 
     private int kuncijawaban()
     {
-        int[] arr=new int[graph.Count];
+        pair[] arr=new pair[graph.Count];
         int[] dipake= new int[graph.Count];
         bool[] visit = new bool[graph.Count];
         int current = 0;
+
         for (int i = 0; i < arr.Length; i++)
         {
-            arr[i] = graph[i].Count;
+            arr[i] = new pair(i, graph[i].Count);
             dipake[i] = 0;
             visit[i] = false;
         }
-        Array.Sort(arr);
 
-        for (int i = arr.Length-1; i >=0; i--)
+        Array.Sort<pair>(arr, (x, y) => y.b.CompareTo(x.b));
+        for (int i = 0; i < arr.Length; i++)
         {
-            if (visit[i] == true) continue;
+            Debug.Log(arr[i].a + " " + arr[i].b);
+        }
+
+        for(int i=0; i<arr.Length; i++)
+        {
+            if (visit[arr[i].a] == true) continue;
             else
             {
-                List<int> pakewarnaini = new List<int>();
                 current++;
-                dipake[i] = current;
-                visit[i] = true;
-                pakewarnaini.Add(arr[i]);
+                List<int> pakewarnaini = new List<int>();
+                dipake[arr[i].a] = current;
+                visit[arr[i].a] = true;
+                pakewarnaini.Add(arr[i].a);
 
-                for (int j = arr.Length - 1; j >= 0; j--)
+                for(int j=0; j<arr.Length; j++)
                 {
                     bool hehe;
-                    if (visit[j] == true) continue;
+                    if (visit[arr[j].a] == true) continue;
                     else
                     {
                         hehe = true;
-
                         for(int k=0; k<pakewarnaini.Count; k++)
                         {
-                            if(graph[k].Contains(arr[j]))
+                            if(graph[pakewarnaini[k]].Contains(arr[j].a))
                             {
                                 hehe = false;
                             }
                         }
 
-
                         if(hehe==true)
                         {
-                            pakewarnaini.Add(arr[j]);
-                            dipake[j] = current;
-                            visit[j] = true;
+                            pakewarnaini.Add(arr[j].a);
+                            dipake[arr[j].a] = current;
+                            visit[arr[j].a] = true;
                         }
-
                     }
-
                 }
             }
+
         }
+        Debug.Log("current"+current);
         return current;
     }
 }
