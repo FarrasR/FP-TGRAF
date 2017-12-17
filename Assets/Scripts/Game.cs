@@ -36,6 +36,13 @@ public class Game : MonoBehaviour {
     public Quaternion spawnrotation;
     public GameObject[] tombolwarna;
 
+    static public int warnasama1;
+    static public int warnasama2;
+    static public int warnaplayer;
+    static public int warnasistem;
+
+
+
     private Dictionary<int, List<int>> graph;
     private GameObject[] vertexnya;
     private GameObject[] edgenya;
@@ -60,6 +67,8 @@ public class Game : MonoBehaviour {
     private float ymax = 1.7F;
     private float ymin = -0.9F;
 
+    private float[] koorx = new float[6];
+    private float[] koory = new float[6];
 
     // Use this for initialization
     void Start() {
@@ -68,8 +77,23 @@ public class Game : MonoBehaviour {
 
         diklik = -1;
         warnanya = Color.white;
+
+
+        koorx[0] = -2.5F;
+        koorx[1] = -1.5F;
+        koorx[2] = -0.5F;
+        koorx[3] = 0.5F;
+        koorx[4] = 1.5F;
+        koorx[5] = 2.5F;
+
+        koory[0] = -0.9F;
+        koory[1] = -0.4F;
+        koory[2] = 0.1F;
+        koory[3] = 0.6F;
+        koory[4] = 1.1F;
+        koory[5] = 1.7F;
+
         makelevel(1);
-        
     }
 
     // Update is called once per frame
@@ -98,16 +122,32 @@ public class Game : MonoBehaviour {
 
     void makelevel(int level)
     {
-        vertexnya = new GameObject[level + 2];
-        edgenya = new GameObject[3];
+        UpdateLevel();
+        int jumlahvertex = level + 2;
+        if (jumlahvertex >= 25) jumlahvertex = 25;
 
+        vertexnya = new GameObject[jumlahvertex];
+        edgenya = new GameObject[3+(2*level-1)];
+        
         graph = new Dictionary<int, List<int> >();
 
         List<pair> mypair = new List<pair>();
+        List<int> counting = new List<int>();
+        for (int i = 0; i < 25; i++) counting.Add(i);
+
 
         for (int i = 0; i < vertexnya.Length; i++)
         {
-            spawnvalue = new Vector2(UnityEngine.Random.Range(xmin, xmax), UnityEngine.Random.Range(ymin, ymax));
+            int coba,temp2;
+            coba = UnityEngine.Random.Range(0, counting.Count);
+            temp2 = counting[coba];
+            counting.Remove(temp2);
+
+            int linex = temp2 % 5;
+            int liney = temp2 / 5;
+
+
+            spawnvalue = new Vector2(UnityEngine.Random.Range(koorx[linex], (koorx[linex+1]-0.2F)), UnityEngine.Random.Range(koory[liney], (koory[liney + 1] - 0.1F)));
             spawnrotation = new Quaternion(0, 0, 0, 0);
             vertexnya[i] = Instantiate(vertexku, spawnvalue, spawnrotation);
             vertexnya[i].SendMessage("SetNumber", i);
@@ -128,7 +168,7 @@ public class Game : MonoBehaviour {
         } 
 
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < edgenya.Length; i++)
         {
             pair temp2 = new pair();
             int coba;
@@ -153,7 +193,8 @@ public class Game : MonoBehaviour {
             edgenya[i].GetComponent<LineRenderer>().SetPosition(1, bar);
             mypair.Remove(temp2);
         }
-        UpdateLevel();
+
+        
     }
 
 
@@ -192,6 +233,8 @@ public class Game : MonoBehaviour {
                 if(vertexnya[i].GetComponent<SpriteRenderer>().color == vertexnya[graph[i][j]].GetComponent<SpriteRenderer>().color)
                 {
                     flag = false;
+                    warnasama1 = i;
+                    warnasama2 = graph[i][j];
                     break;
                 }
             }
@@ -206,6 +249,10 @@ public class Game : MonoBehaviour {
                 terpakai.Add(temp3);
             }
         }
+
+        warnaplayer = terpakai.Count;
+        warnasistem = ans;
+
         Debug.Log("warna yang dipake " + terpakai.Count);
 
         for (int i = 0; i < vertexnya.Length; i++)

@@ -338,7 +338,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1380427788}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 119.5, y: 115.72, z: 0}
+  m_LocalPosition: {x: 0, y: 155.29997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1447140096}
@@ -346,8 +346,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 119.5, y: 115.72}
-  m_SizeDelta: {x: 160, y: 146.56}
+  m_AnchoredPosition: {x: 0, y: 155.29997}
+  m_SizeDelta: {x: 528.2, y: 310.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1380427790
 MonoBehaviour:
@@ -381,7 +381,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CARA MAIN GAME GUAMPANG
+  m_Text: Warnai Vertexnya dan gunakan warna seminimal mungkin sehingga semua vertex
+    yang bertetangga tidak memiliki warna sama. Hati-hati dengan waktunya.
 --- !u!222 &1380427791
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -451,8 +452,8 @@ Canvas:
   m_GameObject: {fileID: 1447140092}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1275607773}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -470,8 +471,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1447140092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 512, y: 384, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalScale: {x: 0.013020833, y: 0.013020833, z: 0.013020833}
   m_Children:
   - {fileID: 1380427789}
   - {fileID: 208254304}
