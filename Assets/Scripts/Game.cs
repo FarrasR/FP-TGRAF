@@ -147,7 +147,7 @@ public class Game : MonoBehaviour {
             int liney = temp2 / 5;
 
 
-            spawnvalue = new Vector2(UnityEngine.Random.Range(koorx[linex], (koorx[linex+1]-0.2F)), UnityEngine.Random.Range(koory[liney], (koory[liney + 1] - 0.1F)));
+            spawnvalue = new Vector2(UnityEngine.Random.Range(koorx[linex], (koorx[linex+1]-0.2F)), UnityEngine.Random.Range(koory[liney]+0.1F, (koory[liney + 1] )));
             spawnrotation = new Quaternion(0, 0, 0, 0);
             vertexnya[i] = Instantiate(vertexku, spawnvalue, spawnrotation);
             vertexnya[i].SendMessage("SetNumber", i);
