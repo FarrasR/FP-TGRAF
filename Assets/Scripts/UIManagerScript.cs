@@ -20,5 +20,9 @@ public class UIManagerScript : MonoBehaviour {
         SceneManager.LoadScene("Main Menu");
     }
 
-	
+    public void Quitting()
+    {
+        Application.Quit();
+    }
+
 }
